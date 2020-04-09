@@ -24,7 +24,7 @@ public class Tail_Launcher {
 
     private void launch(String[] args)  throws IOException {
         CmdLineParser parser = new CmdLineParser(this);
-
+ 
         try {
             parser.parseArgument(args);
         } catch (CmdLineException e) {
