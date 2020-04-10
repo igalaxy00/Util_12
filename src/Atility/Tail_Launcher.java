@@ -42,13 +42,16 @@ public class Tail_Launcher {
             if (lSymbols != null && lLines != null) {
                 System.err.println("You can't use -n and -c together");
                 return;
-            } else if (lSymbols != null)
+            }
+            else if (lSymbols != null){
                 tail = new Exactly_Tail(lSymbols, 0);
-            else if (lLines != null)
+            }
+            else if (lLines != null){
                 tail = new Exactly_Tail(0, lLines);
-            else
+            }
+            else {
                 tail = new Exactly_Tail(0, 10);
-
+            }
             for (String inputFile : inputFiles) {
                 if (inputFiles.length > 1) {
                     to.write(new File(inputFile).getName());
