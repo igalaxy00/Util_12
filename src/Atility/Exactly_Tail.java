@@ -36,8 +36,7 @@ public class Exactly_Tail {
         ArrayDeque<Character> symbols = new ArrayDeque<>(lSymbols);
         int ch;
         while ((ch = from.read()) > -1) {
-            if (symbols.size() == lSymbols)
-                symbols.pollFirst();
+            if (symbols.size() == lSymbols)  symbols.pollFirst();
             symbols.addLast((char) ch);
         }
         AddToDeque(symbols,to , false);

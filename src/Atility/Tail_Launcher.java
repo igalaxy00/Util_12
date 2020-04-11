@@ -52,13 +52,15 @@ public class Tail_Launcher {
             else {
                 tail = new Exactly_Tail(0, 10);
             }
+
+            if (inputFiles.length > 1){
             for (String inputFile : inputFiles) {
-                if (inputFiles.length > 1) {
                     to.write(new File(inputFile).getName());
                     to.newLine();
-                }
                 tail.WholeTail(inputFile, to);
+                }
+            }else{
+                tail.WholeTail(inputFiles[0], to);}
             }
         }
     }
-}
