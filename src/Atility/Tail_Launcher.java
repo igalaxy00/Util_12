@@ -11,11 +11,14 @@ public class Tail_Launcher {
 
     @Option(name = "-c", metaVar = "Symbols", usage = "Extract last symbols")
     private Integer  lSymbols;// последние символы
+
     @Option(name = "-n", metaVar = "Lines", usage = "Extract last lines")
     private Integer  lLines; // последние строки
+
     @Option(name = "-o", metaVar = "OutputName", usage = "  output file")
     private String outputFileName; // файлы выода
-    @Argument(required = true, metaVar = "InputName", usage = "Input file name")
+
+    @Argument( metaVar = "InputName", usage = "Input file name")
     private String[] inputFiles ;// файлы ввода
 
     public static void main(String[] args) throws IOException {
@@ -54,13 +57,15 @@ public class Tail_Launcher {
             }
 
             if (inputFiles.length > 1){
-            for (String inputFile : inputFiles) {
+                for (String inputFile : inputFiles) {
                     to.write(new File(inputFile).getName());
                     to.newLine();
-                tail.WholeTail(inputFile, to);
+                    tail.WholeTail(inputFile, to);
                 }
             }else{
-                tail.WholeTail(inputFiles[0], to);}
+                tail.WholeTail(inputFiles[0], to);
+            }
             }
         }
     }
+

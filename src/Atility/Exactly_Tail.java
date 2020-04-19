@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.Objects;
-
 @SuppressWarnings("WeakerAccess")
 public class Exactly_Tail {
     private int lSymbols;
@@ -13,10 +12,19 @@ public class Exactly_Tail {
     public Exactly_Tail(int lSymbols, int lLines) {
         this.lSymbols = lSymbols;
         this.lLines = lLines;
+
     }
 
-    public void WholeTail(String inputFile, BufferedWriter to ) throws IOException{
-        BufferedReader from = Files.newBufferedReader(Paths.get(inputFile));
+
+    public void WholeTail(String inputFile, BufferedWriter to ) throws IOException {
+        BufferedReader from;
+        if (inputFile == null) {
+            System.out.println("Enter text:");
+            from = new BufferedReader(new InputStreamReader(System.in));
+        } else{
+             from = Files.newBufferedReader(Paths.get(inputFile));
+    }
+
         if (lSymbols==0) {
             lastLines(from, to );
         }else

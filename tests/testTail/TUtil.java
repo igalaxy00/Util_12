@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TUtil {
 
     private boolean isEqualToOutput(String real) throws IOException {
-            return Files.readAllLines(Paths.get("tests/res/output")).equals(Files.readAllLines(Paths.get(real)));
+        return Files.readAllLines(Paths.get("tests/res/output")).equals(Files.readAllLines(Paths.get(real)));
     }
+
     private String[] requiredOutputs = {"tests/res/outputExp" , "tests/res/outputExp2" , "tests/res/outputExp3"};
 
     private String[] testArguments = {"-c 3 -o tests/res/output tests/res/input1",
