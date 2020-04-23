@@ -14,7 +14,7 @@ public class TailLauncher {
 
     @Option(name = "-n", metaVar = "Lines", usage = "Extract last lines")
     private Integer  lLines; // последние строки
- 
+
     @Option(name = "-o", metaVar = "OutputName", usage = "  output file")
     private String outputFileName; // файлы выода
 
@@ -54,17 +54,17 @@ public class TailLauncher {
             else {
                 tail = new Exactly_Tail(0, 10);
             }
-
-            if (inputFiles.length > 1){
+            if (inputFiles == null){
+                tail.WholeTail(null, to);
+            }
+            else if (inputFiles.length > 1){
                 for (String inputFile : inputFiles) {
                     to.write(new File(inputFile).getName());
                     to.write(System.lineSeparator());
                     tail.WholeTail(inputFile, to);
                 }
-            }else if (inputFiles.length == 1){
-                tail.WholeTail(inputFiles[0], to);
             }else{
-                tail.WholeTail(null, to);
+                tail.WholeTail(inputFiles[0], to);
             }
         }
         }
