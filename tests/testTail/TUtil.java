@@ -1,4 +1,4 @@
-import Atility.Tail_Launcher;
+import Atility.TailLauncher;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +19,7 @@ class TUtil {
     @Test
     void test() throws IOException {
         for (int i = 0; i < 3; i++) {
-            Tail_Launcher.main(testArguments[i].split(" "));
+            TailLauncher.main(testArguments[i].split(" "));
             assertTrue(isEqualToOutput(requiredOutputs[i]));
         }
     }

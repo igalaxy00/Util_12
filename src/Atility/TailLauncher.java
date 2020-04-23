@@ -7,7 +7,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Tail_Launcher {
+public class TailLauncher {
 
     @Option(name = "-c", metaVar = "Symbols", usage = "Extract last symbols")
     private Integer  lSymbols;// последние символы
@@ -22,7 +22,7 @@ public class Tail_Launcher {
     private String[] inputFiles ;// файлы ввода
 
     public static void main(String[] args) throws IOException {
-        new Tail_Launcher().launch(args);
+        new TailLauncher().launch(args);
     }
 
     private void launch(String[] args)  throws IOException {
@@ -61,9 +61,12 @@ public class Tail_Launcher {
                     to.write(System.lineSeparator());
                     tail.WholeTail(inputFile, to);
                 }
-            }else
+            }else if (inputFiles.length == 1){
                 tail.WholeTail(inputFiles[0], to);
+            }else{
+                tail.WholeTail(null, to);
             }
+        }
         }
     }
 
