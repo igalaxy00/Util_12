@@ -3,7 +3,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
-import java.util.Objects;
+
 @SuppressWarnings("WeakerAccess")
 public class Exactly_Tail {
     private int lSymbols;
@@ -12,7 +12,6 @@ public class Exactly_Tail {
     public Exactly_Tail(int lSymbols, int lLines) {
         this.lSymbols = lSymbols;
         this.lLines = lLines;
-
     }
 
 
@@ -29,14 +28,14 @@ public class Exactly_Tail {
             lastLines(from, to );
         }else
             lastChars(from, to);
-        to.newLine();
+        to.write(System.lineSeparator());
     }
 
     private void AddToDeque(ArrayDeque Deque , BufferedWriter to , boolean isLines) throws IOException {
         while (Deque.peekFirst() != null) {
-            to.write(String.valueOf(Objects.requireNonNull(Deque.pollFirst())));
-            if (Deque.size() > 0 && isLines)
-                to.newLine();
+            to.write(String.valueOf(Deque.pollFirst()));//не null
+            if (Deque.size() > 0 && isLines)//переход на новую строку если очередь не пуста
+                to.write(System.lineSeparator());
         }
     }
 
@@ -54,8 +53,8 @@ public class Exactly_Tail {
         ArrayDeque<String> lines = new ArrayDeque<>(lLines);
         String line;
         while ((line = from.readLine()) != null) {
+            if (lines.size() == lLines) lines.pollFirst();
             lines.addLast(line);
-            if (lines.size() > lLines) lines.pollFirst();
         }
         AddToDeque(lines,to , true);
     }

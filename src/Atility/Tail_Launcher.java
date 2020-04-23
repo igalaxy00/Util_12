@@ -41,7 +41,6 @@ public class Tail_Launcher {
                 Files.newBufferedWriter(Paths.get(outputFileName))) {
 
             Exactly_Tail tail;
-
             if (lSymbols != null && lLines != null) {
                 System.err.println("You can't use -n and -c together");
                 return;
@@ -59,12 +58,11 @@ public class Tail_Launcher {
             if (inputFiles.length > 1){
                 for (String inputFile : inputFiles) {
                     to.write(new File(inputFile).getName());
-                    to.newLine();
+                    to.write(System.lineSeparator());
                     tail.WholeTail(inputFile, to);
                 }
-            }else{
+            }else
                 tail.WholeTail(inputFiles[0], to);
-            }
             }
         }
     }
