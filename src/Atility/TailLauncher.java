@@ -14,7 +14,7 @@ public class TailLauncher {
 
     @Option(name = "-n", metaVar = "Lines", usage = "Extract last lines")
     private Integer  lLines; // последние строки
-
+ 
     @Option(name = "-o", metaVar = "OutputName", usage = "  output file")
     private String outputFileName; // файлы выода
 
