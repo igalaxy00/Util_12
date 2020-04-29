@@ -1,4 +1,4 @@
-package Atility;
+package MyUtility;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -40,33 +40,34 @@ public class TailLauncher {
         try (BufferedWriter to = outputFileName == null ? new BufferedWriter(new OutputStreamWriter(System.out)) :
                 Files.newBufferedWriter(Paths.get(outputFileName))) {
 
-            Exactly_Tail tail;
+            ExactlyTail tail;
             if (lSymbols != null && lLines != null) {
                 System.err.println("You can't use -n and -c together");
                 return;
             }
             else if (lSymbols != null){
-                tail = new Exactly_Tail(lSymbols, 0);
+                tail = new ExactlyTail(lSymbols, 0);
             }
             else if (lLines != null){
-                tail = new Exactly_Tail(0, lLines);
+                tail = new ExactlyTail(0, lLines);
             }
             else {
-                tail = new Exactly_Tail(0, 10);
+                tail = new ExactlyTail(0, 10);
             }
+
             if (inputFiles == null){
-                tail.WholeTail(null, to);
+                tail.wholeTail(null, to);
             }
             else if (inputFiles.length > 1){
                 for (String inputFile : inputFiles) {
                     to.write(new File(inputFile).getName());
                     to.write(System.lineSeparator());
-                    tail.WholeTail(inputFile, to);
+                    tail.wholeTail(inputFile, to);
                 }
             }else{
-                tail.WholeTail(inputFiles[0], to);
+                tail.wholeTail(inputFiles[0], to);
             }
         }
-        }
     }
+}
 
