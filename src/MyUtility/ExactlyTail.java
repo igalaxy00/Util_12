@@ -9,9 +9,9 @@ public class ExactlyTail {
     private int lastSymbols;
     private int lastLines;
 
-    public ExactlyTail(int lSymbols, int lLines) {
-        this.lastSymbols = lSymbols;
-        this.lastLines = lLines;
+    public ExactlyTail(int lastSymbols, int lastLines) {
+        this.lastSymbols = lastSymbols;
+        this.lastLines = lastLines;
     }
 
     public void wholeTail(String inputFile, BufferedWriter to ) throws IOException {

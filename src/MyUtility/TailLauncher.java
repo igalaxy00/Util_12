@@ -10,10 +10,10 @@ import java.nio.file.Paths;
 public class TailLauncher {
 
     @Option(name = "-c", metaVar = "Symbols", usage = "Extract last symbols")
-    private Integer  lSymbols;// последние символы
+    private Integer  lastSymbols;// последние символы
 
     @Option(name = "-n", metaVar = "Lines", usage = "Extract last lines")
-    private Integer  lLines; // последние строки
+    private Integer lastLines; // последние строки
 
     @Option(name = "-o", metaVar = "OutputName", usage = "  output file")
     private String outputFileName; // файлы выода
@@ -41,15 +41,15 @@ public class TailLauncher {
                 Files.newBufferedWriter(Paths.get(outputFileName))) {
 
             ExactlyTail tail;
-            if (lSymbols != null && lLines != null) {
+            if (lastSymbols != null && lastLines != null) {
                 System.err.println("You can't use -n and -c together");
                 return;
             }
-            else if (lSymbols != null){
-                tail = new ExactlyTail(lSymbols, 0);
+            else if (lastSymbols != null){
+                tail = new ExactlyTail(lastSymbols, 0);
             }
-            else if (lLines != null){
-                tail = new ExactlyTail(0, lLines);
+            else if (lastLines != null){
+                tail = new ExactlyTail(0, lastLines);
             }
             else {
                 tail = new ExactlyTail(0, 10);
